@@ -5,9 +5,7 @@ const enforceCsp = process.env.CSP_ENFORCE === 'true';
 
 const csp = [
   "default-src 'self'",
-  ["script-src 'self' 'unsafe-inline'", !isProduction ? "'unsafe-eval'" : '']
-    .filter(Boolean)
-    .join(' '),
+  ["script-src 'self'"].join(' '),
   "style-src 'self' 'unsafe-inline'",
   ["img-src 'self' data: blob:"].filter(Boolean).join(' '),
   "font-src 'self'",
@@ -16,7 +14,7 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  ...(isProduction ? ['upgrade-insecure-requests'] : []),
+  'upgrade-insecure-requests',
 ]
   .join('; ')
   .replace(/\s{2,}/g, ' ')
