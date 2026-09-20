@@ -5,16 +5,17 @@ const enforceCsp = process.env.CSP_ENFORCE === 'true';
 
 const csp = [
   "default-src 'self'",
-  ["script-src 'self'"].join(' '),
+  isProduction ? ["script-src 'self'"].join(' ') : "script-src 'self' 'unsafe-inline'",
+  "script-src-elem 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   ["img-src 'self' data: blob:"].filter(Boolean).join(' '),
   "font-src 'self'",
-  ["connect-src 'self'"].filter(Boolean).join(' '),
+  isProduction ? ["connect-src 'self'"].filter(Boolean).join(' ') : "connect-src 'self' ws: wss:",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  'upgrade-insecure-requests',
+  ...(!isProduction && enforceCsp ? ['upgrade-insecure-requests'] : [])
 ]
   .join('; ')
   .replace(/\s{2,}/g, ' ')
@@ -41,7 +42,7 @@ const securityHeaders = [
   },
   {
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()',
+    value: 'camera=(), microphone=(), geolocation=()',
   },
   ...(isProduction
     ? [
