@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <section className="bg-background text-foreground">
-        <h1 className="text-foreground text-center">Hello Everyone</p>
+        <h1 className="text-foreground text-center">Hello Everyone</h1>
     </section>
   );
 }
