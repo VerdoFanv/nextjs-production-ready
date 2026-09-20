@@ -1,0 +1,32 @@
+---
+description: UI component and styling conventions for this codebase
+globs: src/app/**/*.{tsx,ts,css}
+alwaysApply: false
+---
+
+# UI & styling
+
+## Components
+
+- Build on Radix wrappers in `src/app/components/ui/` (Dialog, Tabs, Accordion, etc.).
+- Compose with `cn()` from `@/app/lib/utils`. Variants via `cva` only when the component already uses it.
+- Toasts: `sonner` + existing `Toaster`. Theme: `next-themes` + `ThemeToggle`.
+- Motion: `framer-motion` / `MotionBox` — always respect `useReducedMotion`.
+- Images: `next/image` with real `width`/`height`, honest `sizes`, meaningful `alt`. Use `priority` only for true LCP candidates.
+
+## Do / don't
+
+```tsx
+// ✅ semantic tokens + existing Button
+<Button variant="outline">Save</Button>
+<p className="text-body text-text-secondary">…</p>
+
+// ❌ raw hex / one-off type soup / new UI kit
+<div style={{ color: '#333' }} />
+type MegaButtonPropsWithAllTheThings = … // unused
+```
+
+## Forms
+
+- React Hook Form + Zod + `@hookform/resolvers` via `Form` / `FormField` components.
+- Validate with Zod schemas colocated near the form — keep schemas small and used.

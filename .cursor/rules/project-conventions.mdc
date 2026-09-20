@@ -1,0 +1,34 @@
+---
+description: Core agent rules — verify packages, read docs, match project style
+alwaysApply: true
+---
+
+# Project agent guide
+
+## Before writing code
+
+1. **Check installed versions** in `package.json` (and lockfile if needed). Do not assume APIs from training data — this project pins Next.js, React, Radix, Tailwind v4, Framer Motion, Zod, etc.
+2. **Read official docs for the installed version** before adding or changing a dependency:
+   - Next.js: `node_modules/next/dist/docs/` and [nextjs.org/docs](https://nextjs.org/docs)
+   - Other libs: official docs for that **exact major** (Radix, Framer Motion, RHF, Zod, next-themes, Sonner, Embla, date-fns, DOMPurify)
+3. Prefer **existing** components
+
+## Code style
+
+- Match neighboring files: imports, naming, `'use client'` only when needed, path alias `@/app/...`.
+- **Types**: only what is used. Prefer inference; avoid unused generics, duplicate aliases, and ceremony types.
+- **No drive-by refactors**. Change only what the task needs.
+- Keep comments rare and useful (why, not what).
+
+## Styling
+
+- Tokens live in `src/app/_styles/` (`colors.css`, `theme.css`, `typography.css`, `globals.css`).
+- Use semantic classes: `bg-background`, `bg-surface`, `text-foreground`, `text-text-secondary`, `text-text-muted`, `border-border`, `text-primary`, `text-danger`.
+- Typography utilities: `text-display`, `text-title`, `text-body`, `text-caption`.
+- Do not invent parallel color systems or default to purple / cream-terracotta / broadsheet layouts.
+
+## Structure
+
+- App routes and UI under `src/app/`.
+- Colocate route UI in `_components/` when page-specific.
+- Config in `src/app/config/` (`site.ts`, `images.ts`).

@@ -1,25 +1,29 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from 'next'
 
-const isProduction = process.env.NODE_ENV === 'production';
-const enforceCsp = process.env.CSP_ENFORCE === 'true';
+const isProduction = process.env.NODE_ENV === 'production'
+const enforceCsp = process.env.CSP_ENFORCE === 'true'
 
 const csp = [
   "default-src 'self'",
-  isProduction ? ["script-src 'self'"].join(' ') : "script-src 'self' 'unsafe-inline'",
+  isProduction
+    ? ["script-src 'self'"].join(' ')
+    : "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
   "script-src-elem 'self' 'unsafe-inline'",
   "style-src 'self' 'unsafe-inline'",
   ["img-src 'self' data: blob:"].filter(Boolean).join(' '),
   "font-src 'self'",
-  isProduction ? ["connect-src 'self'"].filter(Boolean).join(' ') : "connect-src 'self' ws: wss:",
+  isProduction
+    ? ["connect-src 'self'"].filter(Boolean).join(' ')
+    : "connect-src 'self' ws: wss:",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  ...(!isProduction && enforceCsp ? ['upgrade-insecure-requests'] : [])
+  ...(!isProduction && enforceCsp ? ['upgrade-insecure-requests'] : []),
 ]
   .join('; ')
   .replace(/\s{2,}/g, ' ')
-  .trim();
+  .trim()
 
 const securityHeaders = [
   {
@@ -52,7 +56,7 @@ const securityHeaders = [
         },
       ]
     : []),
-];
+]
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -61,8 +65,8 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
-    ];
+    ]
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

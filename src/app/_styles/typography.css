@@ -1,0 +1,22 @@
+@theme {
+  --font-sans: var(--font-manrope);
+
+  --text-display: clamp(2.5rem, 5vw, 3.75rem);
+  --text-display--line-height: 1.08;
+  --text-display--font-weight: 700;
+  --text-display--letter-spacing: -0.03em;
+
+  --text-title: clamp(1.5rem, 2.5vw, 2rem);
+  --text-title--line-height: 1.2;
+  --text-title--font-weight: 600;
+  --text-title--letter-spacing: -0.02em;
+
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.7;
+  --text-body--font-weight: 400;
+
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.45;
+  --text-caption--font-weight: 500;
+  --text-caption--letter-spacing: 0.02em;
+}
