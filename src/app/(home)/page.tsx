@@ -35,12 +35,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <section className="bg-background text-foreground">
-      <div className="border border-border bg-surface">
-        <p className="text-secondary">Software Engineer</p>
-        <button className="bg-primary hover:bg-primary-hover">
-          View Project
-        </button>
-      </div>
+        <h1 className="text-foreground text-center">Hello Everyone</p>
     </section>
   );
 }
