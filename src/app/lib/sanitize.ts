@@ -47,3 +47,8 @@ export function escapeHtml(text: string): string {
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;')
 }
+
+export function sanitizeJsonLd(data: unknown): string {
+  const jsonString = JSON.stringify(data)
+  return DOMPurify.sanitize(jsonString, STRICT_CONFIG).replace(/</g, '\\u003c')
+}

@@ -137,7 +137,10 @@ export function WebVitalsSection() {
                           {item.progress}%
                         </span>
                       </div>
-                      <Progress value={item.progress} />
+                      <Progress
+                        aria-label="Example health"
+                        value={item.progress}
+                      />
                     </div>
                   </div>
                 </div>

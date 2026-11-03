@@ -19,7 +19,7 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
-  ...(!isProduction && enforceCsp ? ['upgrade-insecure-requests'] : []),
+  ...(isProduction ? ['upgrade-insecure-requests'] : []),
 ]
   .join('; ')
   .replace(/\s{2,}/g, ' ')

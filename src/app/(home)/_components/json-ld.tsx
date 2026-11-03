@@ -1,4 +1,5 @@
 import { siteConfig } from '@/app/config/site'
+import { sanitizeJsonLd } from '@/app/lib/sanitize'
 
 export function JsonLd() {
   const data = {
@@ -14,7 +15,7 @@ export function JsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: sanitizeJsonLd(data) }}
     />
   )
 }
