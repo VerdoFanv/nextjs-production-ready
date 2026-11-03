@@ -19,6 +19,11 @@ const scaleIn = {
   visible: { opacity: 1, scale: 1 },
 }
 
+const slideUp = {
+  hidden: { y: 16 },
+  visible: { y: 0 },
+}
+
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
@@ -31,7 +36,7 @@ const staggerContainer = {
 }
 
 type MotionBoxProps = Omit<HTMLMotionProps<'div'>, 'children'> & {
-  variant?: 'fade' | 'fadeUp' | 'scale'
+  variant?: 'fade' | 'fadeUp' | 'scale' | 'slideUp'
   reduceMotion?: boolean
   children?: ReactNode
 }
@@ -47,6 +52,7 @@ function MotionBox({
     fade: fadeIn,
     fadeUp: fadeInUp,
     scale: scaleIn,
+    slideUp,
   } as const
   const variants = variantsMap[variant]
 
@@ -104,6 +110,7 @@ export {
   fadeIn,
   fadeInUp,
   scaleIn,
+  slideUp,
   staggerContainer,
   MotionBox,
   MotionStagger,

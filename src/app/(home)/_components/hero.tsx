@@ -21,7 +21,7 @@ export function Hero() {
 
       <div className="mx-auto w-full max-w-5xl px-6">
         <MotionBox
-          variant="fadeUp"
+          variant="slideUp"
           reduceMotion={reduceMotion}
           className="max-w-2xl"
         >
